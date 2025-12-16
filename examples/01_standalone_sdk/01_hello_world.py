@@ -12,7 +12,6 @@ load_dotenv()
 
 anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
 
-print(f"Using Anthropic API Key: {anthropic_api_key is not None}")
 
 if not anthropic_api_key:
     raise ValueError("ANTHROPIC_API_KEY environment variable not set.")
