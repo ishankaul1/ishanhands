@@ -1,14 +1,25 @@
 import os
 
+from dotenv import load_dotenv
+
 from openhands.sdk import LLM, Agent, Conversation, Tool
 from openhands.tools.file_editor import FileEditorTool
 from openhands.tools.task_tracker import TaskTrackerTool
 from openhands.tools.terminal import TerminalTool
 
+load_dotenv()
+
+
+anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
+
+print(f"Using Anthropic API Key: {anthropic_api_key is not None}")
+
+if not anthropic_api_key:
+    raise ValueError("ANTHROPIC_API_KEY environment variable not set.")
 
 llm = LLM(
-    model=os.getenv("LLM_MODEL", "anthropic/claude-sonnet-4-5-20250929"),
-    api_key=os.getenv("LLM_API_KEY"),
+    model="anthropic/claude-sonnet-4-5-20250929",
+    api_key=os.getenv("ANTHROPIC_API_KEY"),
     base_url=os.getenv("LLM_BASE_URL", None),
 )
 
